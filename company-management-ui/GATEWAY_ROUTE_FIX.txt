@@ -1,0 +1,7 @@
+Optional route hardening for api-gateway/src/main/resources/application.properties
+If bare collection URLs such as GET /api/employees do not match Path=/api/employees/** on your Gateway version, replace ONLY the four predicate lines with:
+spring.cloud.gateway.routes[0].predicates[0]=Path=/api/employees,/api/employees/**
+spring.cloud.gateway.routes[1].predicates[0]=Path=/api/departments,/api/departments/**
+spring.cloud.gateway.routes[2].predicates[0]=Path=/api/projects,/api/projects/**
+spring.cloud.gateway.routes[3].predicates[0]=Path=/api/project-assignments,/api/project-assignments/**
+Then restart api-gateway. Do not remove lb:// URIs.
